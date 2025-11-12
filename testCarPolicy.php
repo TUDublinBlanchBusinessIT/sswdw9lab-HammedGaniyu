@@ -1,13 +1,20 @@
 <?php
 date_default_timezone_set('Europe/Dublin');
-include("CarPolicy.php");
+require_once('CarPolicy.php');
 
-$myCarpolicy = new CarPolicy("XM123456", 450);
-
-$myCarpolicy->setDateOfLastClaim("2015-10-10");
-echo "the policy " . $myCarpolicy;
-echo "has " . $myCarpolicy->getTotalYearsNoClaims();
-echo "years no claims.";
+$initialPremium = 600;
 
 
+$myCarPolicy = new CarPolicy("XM123456", "John Doe", "2015-10-10");
+
+
+$yearsNoClaims = $myCarPolicy->getTotalYearsNoClaims();
+$policyString  = $myCarPolicy->__toString();
+
+
+
+echo "Policy Number: $policyString\n";
+echo "Policy Holder: " . $myCarPolicy->getPolicyHolderName() . "\n";
+echo "Years Without Claim: $yearsNoClaims years\n";
+echo "Initial Premium: €" . number_format($initialPremium, 2) . "\n";
 ?>
